@@ -2245,14 +2245,6 @@ body.dark #page-plant .plant-custom-message {
 }
 
 
-.plant-event-date {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-}
-
-.plant-date-label,
-.plant-date-value {
+.plant-date-label {
   display: block;
 }
