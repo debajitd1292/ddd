@@ -230,7 +230,9 @@ function majorCard(row, name) {
       <div class="plant-status-text">${escapeHTML(status)}</div>
       ${
         eventDate
-           ? `<div class="plant-event-date"><span class="plant-date-label">${escapeHTML(eventLabel)}:</span><span class="plant-date-value">${escapeHTML(eventDate)}</span></div>`>`
+           
+          ? `<div class="plant-event-date"><span class="plant-date-label">${escapeHTML(eventLabel)}:</span> ${escapeHTML(eventDate)}</div>`
+
           : ""
       }
       ${
@@ -339,7 +341,9 @@ function fpuCard(row, name, pairStatus = null) {
       </div>
       ${
         eventDate
-           ? `<div class="plant-event-date"><span class="plant-date-label">${escapeHTML(eventLabel)}:</span><span class="plant-date-value">${escapeHTML(eventDate)}</span></div>`>`
+           
+          ? `<div class="plant-event-date"><span class="plant-date-label">${escapeHTML(eventLabel)}:</span> ${escapeHTML(eventDate)}</div>`
+
           : ""
       }
       ${
