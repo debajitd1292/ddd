@@ -614,7 +614,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "others"
     ];
 
-    
+    const savedPage = localStorage.getItem("lastDashboardPage");
     const initialPage = validPages.includes(savedPage) ? savedPage : "home";
 
     navigateToPage(initialPage, false);
