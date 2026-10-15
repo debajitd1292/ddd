@@ -1,16 +1,8 @@
-
-/* =========================================================
-   PLANT STATUS MODULE
-   File: js/plant.js
-   CSV: updates/plant_status.csv
-   Refresh: Every 2 minutes + when tab becomes visible
-   ========================================================= */
-
 (function () {
   "use strict";
 
   const CSV_URL =
-    "https://raw.githubusercontent.com/debajitd1292/ddd/main/updates/plant_status.csv";
+    const CSV_URL = plantStatusUrl;
 
   const REFRESH_INTERVAL = 2 * 60 * 1000;
 
