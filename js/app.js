@@ -615,16 +615,13 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     
-    const initialPage = "home";
-    const savedPage = sessionStorage.getItem("lastDashboardPage") || "home";
+    const initialPage = validPages.includes(savedPage) ? savedPage : "home";
 
     navigateToPage(initialPage, false);
-    sessionStorage.setItem("lastDashboardPage", savedPage);
-
     history.replaceState(
         { dashboardPage: initialPage },
         "",
-        "#home"
+        "#" + initialPage
     );
 
 });
