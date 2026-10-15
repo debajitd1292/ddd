@@ -616,8 +616,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     const initialPage = "home";
+    const savedPage = sessionStorage.getItem("lastDashboardPage") || "home";
 
     navigateToPage(initialPage, false);
+    sessionStorage.setItem("lastDashboardPage", savedPage);
+
     history.replaceState(
         { dashboardPage: initialPage },
         "",
