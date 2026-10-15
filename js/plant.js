@@ -173,120 +173,167 @@
     if (el) el.textContent = message || "";
   }
 
-  function majorCard(row, name) {
-    row = row || {};
+  
+function majorCard(row, name) {
+  row = row || {};
 
-    const startup = parseDate(row.last_startup_date);
-    const shutdown = parseDate(row.last_shutdown_date);
+  const startup = parseDate(row.last_startup_date);
+  const shutdown = parseDate(row.last_shutdown_date);
 
-    let status = "Status Undetermined";
-    let statusClass = "plant-unknown";
-    let eventDate = "";
-    let duration = "";
+  let status = "Status Undetermined";
+  let statusClass = "plant-unknown";
+  let eventLabel = "";
+  let eventDate = "";
+  let duration = "";
 
-    if (startup && shutdown && startup.getTime() !== shutdown.getTime()) {
-      if (startup > shutdown) {
-        status = "Running";
-        statusClass = "plant-running";
-        eventDate = eventDateText(
-          row.last_startup_date,
-          row.last_event_shift
-        );
+  if (startup && shutdown && startup.getTime() !== shutdown.getTime()) {
+    if (startup > shutdown) {
+      status = "Running";
+      statusClass = "plant-running";
+      eventLabel = "Last Startup";
+      eventDate = eventDateText(
+        row.last_startup_date,
+        row.last_event_shift
+      );
 
-        const days = daysBetween(startup);
-        duration = `Continuous uptime: ${days} day${days === 1 ? "" : "s"}`;
-      } else {
-        status = "Shutdown";
-        statusClass = "plant-shutdown";
-        eventDate = eventDateText(
-          row.last_shutdown_date,
-          row.last_event_shift
-        );
+      const days = daysBetween(startup);
+      duration = `Continuous uptime: ${days} day${days === 1 ? "" : "s"}`;
+    } else {
+      status = "Shutdown";
+      statusClass = "plant-shutdown";
+      eventLabel = "Last Shutdown";
+      eventDate = eventDateText(
+        row.last_shutdown_date,
+        row.last_event_shift
+      );
 
-        const days = daysBetween(shutdown);
-        duration = `Continuous downtime: ${days} day${days === 1 ? "" : "s"}`;
-      }
+      const days = daysBetween(shutdown);
+      duration = `Continuous downtime: ${days} day${days === 1 ? "" : "s"}`;
     }
-
-    return `
-      <article class="plant-major-card ${statusClass}">
-        <div class="plant-card-title">${escapeHTML(name)}</div>
-        <div class="plant-status-text">${escapeHTML(status)}</div>
-        ${
-          eventDate
-            ? `<div class="plant-event-date">${escapeHTML(eventDate)}</div>`
-            : `<div class="plant-event-date">Latest event cannot be determined</div>`
-        }
-        ${
-          duration
-            ? `<div class="plant-duration">${escapeHTML(duration)}</div>`
-            : ""
-        }
-      </article>
-    `;
+  } else if (startup && !shutdown) {
+    eventLabel = "Last Startup";
+    eventDate = eventDateText(
+      row.last_startup_date,
+      row.last_event_shift
+    );
+  } else if (shutdown && !startup) {
+    eventLabel = "Last Shutdown";
+    eventDate = eventDateText(
+      row.last_shutdown_date,
+      row.last_event_shift
+    );
   }
 
-  function fpuCard(row, name) {
-    row = row || {};
-
-    const inlineDate = parseDate(row.last_taken_inline_date);
-    const regenDate = parseDate(row.last_regeneration_date);
-
-    let status = "Undetermined";
-    let statusClass = "plant-fpu-unknown";
-    let eventDate = "";
-
-    const customStatus = (row.custom_status || "").trim();
-
-    if (
-      inlineDate &&
-      regenDate &&
-      inlineDate.getTime() !== regenDate.getTime()
-    ) {
-      if (inlineDate > regenDate) {
-        status = "Inline";
-        statusClass = "plant-fpu-inline";
-        eventDate = eventDateText(
-          row.last_taken_inline_date,
-          row.last_inline_shift
-        );
-      } else {
-        status = "Standby";
-        statusClass = "plant-fpu-standby";
-        eventDate = eventDateText(
-          row.last_regeneration_date,
-          row.last_regeneration_shift
-        );
+  return `
+    <article class="plant-major-card ${statusClass}">
+      <div class="plant-card-title">${escapeHTML(name)}</div>
+      <div class="plant-status-text">${escapeHTML(status)}</div>
+      ${
+        eventDate
+          ? `<div class="plant-event-date"><span class="plant-date-label">${escapeHTML(eventLabel)}:</span> ${escapeHTML(eventDate)}</div>`
+          : ""
       }
+      ${
+        duration
+          ? `<div class="plant-duration">${escapeHTML(duration)}</div>`
+          : ""
+      }
+    </article>
+  `;
+}
+
+
+ 
+function fpuCard(row, name) {
+  row = row || {};
+
+  const inlineDate = parseDate(row.last_taken_inline_date);
+  const regenDate = parseDate(row.last_regeneration_date);
+
+  let status = "Undetermined";
+  let statusClass = "plant-fpu-unknown";
+  let eventLabel = "";
+  let eventDate = "";
+
+  const customStatus = (row.custom_status || "").trim();
+
+  if (
+    inlineDate &&
+    regenDate &&
+    inlineDate.getTime() !== regenDate.getTime()
+  ) {
+    if (inlineDate > regenDate) {
+      status = "Inline";
+      statusClass = "plant-fpu-inline";
+      eventLabel = "Last Taken Inline";
+      eventDate = eventDateText(
+        row.last_taken_inline_date,
+        row.last_inline_shift
+      );
+    } else {
+      status = "Standby";
+      statusClass = "plant-fpu-standby";
+      eventLabel = "Last Regenerated";
+      eventDate = eventDateText(
+        row.last_regeneration_date,
+        row.last_regeneration_shift
+      );
     }
-
-    // A non-empty custom status overrides the automatically calculated status.
-    if (customStatus) {
-      status = customStatus;
-      statusClass = "plant-fpu-custom";
-    }
-
-    const daysInline = inlineDate
-      ? daysBetween(inlineDate)
-      : null;
-
-    return `
-      <article class="plant-fpu-card ${statusClass}">
-        <div class="plant-card-title">${escapeHTML(name)}</div>
-        <div class="plant-status-text">${escapeHTML(status)}</div>
-        ${
-          eventDate
-            ? `<div class="plant-event-date">${escapeHTML(eventDate)}</div>`
-            : ""
-        }
-        ${
-          daysInline !== null
-            ? `<div class="plant-duration">Days Inline: ${daysInline}</div>`
-            : ""
-        }
-      </article>
-    `;
+  
+  } else if (inlineDate && !regenDate) {
+    status = "Inline";
+    statusClass = "plant-fpu-inline";
+    eventLabel = "Last Taken Inline";
+    eventDate = eventDateText(
+      row.last_taken_inline_date,
+      row.last_inline_shift
+    );
+  } else if (regenDate && !inlineDate) {
+    status = "Standby";
+    statusClass = "plant-fpu-standby";
+    eventLabel = "Last Regenerated";
+    eventDate = eventDateText(
+      row.last_regeneration_date,
+      row.last_regeneration_shift
+    );
   }
+
+
+  
+  if (customStatus) {
+    status = customStatus;
+  }
+
+
+  const daysInline = inlineDate
+    ? daysBetween(inlineDate)
+    : null;
+
+  return `
+    <article class="plant-fpu-card ${statusClass}">
+      <div class="plant-card-title">${escapeHTML(name)}</div>
+      
+      <div class="plant-status-text">${escapeHTML(status)}</div>
+      ${
+        customStatus
+          ? `<div class="plant-custom-message">${escapeHTML(customStatus)}</div>`
+          : ""
+      }
+
+      ${
+        eventDate
+          ? `<div class="plant-event-date"><span class="plant-date-label">${escapeHTML(eventLabel)}:</span> ${escapeHTML(eventDate)}</div>`
+          : ""
+      }
+      ${
+        daysInline !== null
+          ? `<div class="plant-duration">Days Inline: ${daysInline}</div>`
+          : ""
+      }
+    </article>
+  `;
+}
+
 
   function render(rows) {
     const majorContainer = $("plantMajorCards");
