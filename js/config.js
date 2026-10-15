@@ -18,6 +18,9 @@ const trainingUrl =
 const imsUrl =
     baseUrl + "updates/ims.csv?v=" + DATA_VERSION;
 
+const plantStatusUrl =
+    baseUrl + "updates/plant_status.csv";
+
 const productionPlanUrl =
     baseUrl + "production/production_plan.csv?v=" + DATA_VERSION;
 
