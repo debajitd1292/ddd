@@ -405,15 +405,10 @@ function fpuCard(row, name, pairStatus = null) {
 
     try {
       const url =
-        CSV_URL + "?v=" + Date.now() + "-" + Math.random().toString(36).slice(2);
+        CSV_URL + "?v=" + Date.now();
 
       const response = await fetch(url, {
-        method: "GET",
-        cache: "no-store",
-        headers: {
-          "Cache-Control": "no-cache",
-          "Pragma": "no-cache"
-        }
+        cache: "no-store"
       });
 
       if (!response.ok) {
@@ -471,24 +466,5 @@ function fpuCard(row, name, pairStatus = null) {
   } else {
     startPlantStatus();
   }
-
-// Refresh when the Plant page becomes active.
-const plantPage = document.getElementById("page-plant");
-
-if (plantPage) {
-  const plantObserver = new MutationObserver(() => {
-    if (
-      plantPage.classList.contains("active") ||
-      plantPage.classList.contains("active-page")
-    ) {
-      refreshPlantStatus();
-    }
-  });
-
-  plantObserver.observe(plantPage, {
-    attributes: true,
-    attributeFilter: ["class"]
-  });
-}
 
 })();
