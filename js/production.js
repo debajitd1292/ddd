@@ -225,3 +225,125 @@ function renderProductionPlan(){
     });
 
 }
+
+/* ===== CURRENT PRODUCTION GRADE ===== */
+
+function loadProductionGradeData(csvText) {
+    const gradeBox = document.getElementById("currentProductionGrade");
+    const dateBox = document.getElementById("productionGradeSince");
+
+    if (!gradeBox || !dateBox) return;
+
+    if (!csvText || !csvText.trim()) {
+        gradeBox.textContent = "Grade data not available";
+        dateBox.textContent = "";
+        return;
+    }
+
+    const rows = parseCSV(csvText);
+
+    if (!rows || rows.length < 2) {
+        gradeBox.textContent = "Grade data not available";
+        dateBox.textContent = "";
+        return;
+    }
+
+    const headers = rows[0].map(v => String(v || "").trim().toLowerCase());
+
+    const gradeIndex = headers.indexOf("grade");
+    const dateIndex = headers.indexOf("date");
+
+    if (gradeIndex < 0 || dateIndex < 0) {
+        gradeBox.textContent = "Invalid grade CSV format";
+        dateBox.textContent = "";
+        return;
+    }
+
+    function parseGradeDate(value) {
+        const text = String(value || "").trim();
+
+        // Supports DD-MMM-YYYY, DD-MM-YYYY and YYYY-MM-DD.
+        let match = text.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/);
+
+        if (match) {
+            const months = {
+                jan: 0, feb: 1, mar: 2, apr: 3,
+                may: 4, jun: 5, jul: 6, aug: 7,
+                sep: 8, oct: 9, nov: 10, dec: 11
+            };
+
+            const month = months[match[2].toLowerCase()];
+            if (month === undefined) return null;
+
+            const date = new Date(
+                Number(match[3]), month, Number(match[1])
+            );
+
+            return date.getFullYear() === Number(match[3]) &&
+                   date.getMonth() === month &&
+                   date.getDate() === Number(match[1])
+                ? date
+                : null;
+        }
+
+        match = text.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+
+        if (match) {
+            const date = new Date(
+                Number(match[3]),
+                Number(match[2]) - 1,
+                Number(match[1])
+            );
+
+            return date.getFullYear() === Number(match[3]) &&
+                   date.getMonth() === Number(match[2]) - 1 &&
+                   date.getDate() === Number(match[1])
+                ? date
+                : null;
+        }
+
+        match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+
+        if (match) {
+            const date = new Date(
+                Number(match[1]),
+                Number(match[2]) - 1,
+                Number(match[3])
+            );
+
+            return date.getFullYear() === Number(match[1]) &&
+                   date.getMonth() === Number(match[2]) - 1 &&
+                   date.getDate() === Number(match[3])
+                ? date
+                : null;
+        }
+
+        return null;
+    }
+
+    const entries = rows.slice(1)
+        .map(row => ({
+            grade: String(row[gradeIndex] || "").trim(),
+            dateText: String(row[dateIndex] || "").trim(),
+            date: parseGradeDate(row[dateIndex])
+        }))
+        .filter(item => item.grade && item.date);
+
+    if (!entries.length) {
+        gradeBox.textContent = "Grade data not available";
+        dateBox.textContent = "";
+        return;
+    }
+
+    entries.sort((a, b) => b.date - a.date);
+
+    const latest = entries[0];
+
+    const formattedDate =
+        String(latest.date.getDate()).padStart(2, "0") + "-" +
+        latest.date.toLocaleString("en-US", { month: "short" }) + "-" +
+        latest.date.getFullYear();
+
+    gradeBox.textContent = latest.grade;
+    dateBox.textContent = "Current grade since: " + formattedDate;
+}

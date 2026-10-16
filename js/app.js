@@ -313,6 +313,7 @@ function autoRefreshData(){
         fetchCSV(trainingUrl, true),
         fetchCSV(productionPlanUrl, true),
         fetchCSV(productionTargetUrl, true),
+        fetchCSV(productionGradeUrl, true),
         fetchCSV(nonExecUrl),
         fetchCSV(nonExecUrlNext, true),
         fetchCSV(seniorityExecUrl, true),
@@ -329,6 +330,7 @@ function autoRefreshData(){
         trainingText,
         productionPlanText,
         productionTargetText,
+        productionGradeText,
         nonExecTextCurrent,
         nonExecTextNext,
         seniorityExecText,
@@ -388,7 +390,7 @@ if(alertsText !== undefined){
         productionTargetText
         );
 
-
+        loadProductionGradeData(productionGradeText);
         loadNotesData(notesText);
 
         if (imsText !== undefined && imsText !== null) {
