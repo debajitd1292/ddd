@@ -2235,3 +2235,34 @@ body.dark #page-plant .plant-custom-message {
 .plant-date-label {
   display: block;
 }
+
+/* ===== CURRENT PRODUCTION GRADE CARD ===== */
+
+.production-grade-card {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.production-grade-card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#currentProductionGrade {
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.production-grade-since {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+body.dark .production-grade-since {
+    color: #94a3b8;
+}
