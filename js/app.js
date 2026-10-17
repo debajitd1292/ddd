@@ -305,10 +305,20 @@ function autoRefreshData(){
 
     updateShiftUrls();
 
-    // Load Production Grade independently
-    fetchCSV(productionGradeUrl, true)
-        .then(loadProductionGradeData)
-        .catch(err => console.warn("Production Grade load failed:", err));
+    // Load Production Grade independently with a fresh request
+    const gradeBox = document.getElementById("currentProductionGrade");
+
+    fetchCSV(
+        productionGradeUrl + "&_refresh=" + Date.now(),
+        true
+    )
+    .then(csvText => {
+        loadProductionGradeData(csvText);
+    })
+    .catch(err => {
+        console.warn("Production Grade load failed:", err);
+        if (gradeBox) gradeBox.textContent = "Unable to load grade";
+    });
 
     Promise.all([
         fetchCSV(shiftUrl),
