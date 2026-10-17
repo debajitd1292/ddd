@@ -305,10 +305,6 @@ function autoRefreshData(){
 
     updateShiftUrls();
 
-     fetchCSV(productionGradeUrl, true)
-    .then(loadProductionGradeData)
-    .catch(err => console.warn("Production Grade load failed:", err));
-
     Promise.all([
         fetchCSV(shiftUrl),
         fetchCSV(shiftUrlNext, true),
@@ -333,7 +329,6 @@ function autoRefreshData(){
         trainingText,
         productionPlanText,
         productionTargetText,
-        productionGradeText,
         nonExecTextCurrent,
         nonExecTextNext,
         seniorityExecText,
@@ -392,6 +387,7 @@ if(alertsText !== undefined){
         productionPlanText,
         productionTargetText
         );
+
 
         loadNotesData(notesText);
 
@@ -629,4 +625,3 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
-
