@@ -115,10 +115,12 @@ function renderCurrentProductionGrade(){
         }
     }
 
-    gradeBox.textContent = grade || "Grade data not available";
-    dateBox.textContent = grade && since
-        ? "Since " + formatDate(since)
-        : "";
+    gradeBox.textContent = grade || "Loading...";
+    dateBox.innerHTML = grade && since
+    ? "Since: " + formatDate(since) +
+      "<br>Days in Current Grade: " +
+      Math.floor((today - since) / 86400000)
+    : "";
 }
 
 function renderProductionPlan(){
