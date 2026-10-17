@@ -2272,6 +2272,8 @@ body.dark #page-plant .plant-custom-message {
     margin-top: 5px;
     color: #64748b;
     font-size: 12px;
+    font-weight: 600;
+    line-height: 1.7;
 }
 
 body.dark #page-production .production-grade-card {
