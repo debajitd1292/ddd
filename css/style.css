@@ -1,30 +1,35 @@
-/*
-===============================================================================
-PPU OPERATIONS DASHBOARD — CSS INDEX
-===============================================================================
+/* CSS INDEX
 01. Global & base
-02. Header, logo & date
-03. HOD / Area in-charge
+02. Header & logo
+03. HOD / area in-charge
 04. Layout & form controls
-05. Alerts & animations
-06. Executive / non-executive headers
-07. Shift cards, chips & shift colours
-08. Footer & last-updated text
-09. Monthly shift calendar
-10. Training
-11. Theme toggle
-12. Dark-mode overrides
-13. Production plan
-14. App pages & general responsive rules
-15. IMS targets
-16. Training / Production / Settings / Shift headings
-17. Today's shift glass highlight
-18. Bottom navigation (single source of truth)
-===============================================================================
+05. Alerts
+06. Animations
+07. Responsive design
+08. Executive / non-executive headers
+09. Shift display & colors
+10. Footer & last updated
+11. Full month shift calendar
+12. Training
+13. Theme toggle
+14. Dark mode overrides
+15. Production plan
+16. App page navigation
+17. IMS targets
+18. IMS card design
+19. Shared section headers
+20. Settings / display options
+21. Settings header
+22. Shift headings
+23. Current shift highlight
+24. Bottom navigation
+25. Plant page layout
+26. Plant page compact layout
+27. Current production grade card
+
 */
 
-/* ==================== 01. GLOBAL & BASE ==================== */
-
+/* 01. GLOBAL & BASE */
 body { 
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -35,8 +40,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ==================== 02. HEADER & LOGO ==================== */
-
+/* 02. HEADER & LOGO */
 .header {
     position: sticky;
     top: 0;
@@ -44,17 +48,13 @@ body {
 
     padding: 18px 12px;
 
-    /* Premium gradient */
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
 
-    /* Glass effect */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    /* Subtle border */
     border-bottom: 1px solid rgba(255,255,255,0.1);
 
-    /* Depth shadow */
     box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 
     text-align: center;
@@ -76,7 +76,6 @@ body {
     font-weight: 600;
     letter-spacing: 0.5px;
 
-    /* subtle glow */
     text-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 
@@ -131,8 +130,7 @@ h1 {
     border: 1px solid rgba(255,255,255,0.15);
 }
 
-/* ==================== 03. HOD / AREA IN-CHARGE ==================== */
-
+/* 03. HOD / AREA IN-CHARGE */
 .info-bar {
     background: linear-gradient(135deg, #1f4e79, #163a5f);
     color: white;
@@ -173,8 +171,7 @@ h1 {
     white-space: nowrap;
 }
 
-/* ==================== 04. LAYOUT & FORM CONTROLS ==================== */
-
+/* 04. LAYOUT & FORM CONTROLS */
 .row {
     display: flex;
     gap: 10px;
@@ -185,14 +182,12 @@ h1 {
     min-width: 0;
 }
 
-/* ==================== 05. ALERTS ==================== */
-
+/* 05. ALERTS */
 #alertSection {
     margin: 10px;
     animation: fadeIn 0.3s ease;
 }
 
-/* Thin accent on left */
 .notice-alert::before {
     content: "";
     position: absolute;
@@ -204,7 +199,6 @@ h1 {
     border-radius: 12px 0 0 12px;
 }
 
-/* Individual alert */
 .alert-item {
     position: relative;
     margin-bottom: 0;
@@ -228,8 +222,7 @@ h1 {
     display: none;
 }
 
-/* ==================== 15. ANIMATIONS ==================== */
-
+/* 06. ANIMATIONS */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -285,10 +278,7 @@ select:focus, input:focus {
     z-index: 1;
 }
 
-/* ===== Mobile Optimization ===== */
-
-/* ==================== 14. RESPONSIVE DESIGN ==================== */
-
+/* 07. RESPONSIVE DESIGN */
 @media (max-width: 600px) {
     .row {
         flex-direction: row;
@@ -305,8 +295,7 @@ select:focus, input:focus {
     }
 }
 
-/* ==================== 06. EXECUTIVE / NON-EXECUTIVE HEADERS ==================== */
-
+/* 08. EXECUTIVE / NON-EXECUTIVE HEADERS */
 .section-header {
     display: inline-block;
     padding: 6px 14px;
@@ -317,7 +306,7 @@ select:focus, input:focus {
     letter-spacing: 0.5px;
     text-transform: uppercase;
 
-    border-radius: 999px; /* pill shape */
+    border-radius: 999px; 
 
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -339,8 +328,7 @@ select:focus, input:focus {
     border: 1px solid rgba(183,28,28,0.3);
 }
 
-/* ==================== 07. SHIFT DISPLAY & COLORS ==================== */
-
+/* 09. SHIFT DISPLAY & COLORS */
 .card {
     background:white;
     margin:10px;
@@ -363,7 +351,6 @@ select:focus, input:focus {
 
 .selected { border:2px solid gold; }
 
-/* COLORS */
 .A { 
     background: linear-gradient(135deg, #9333ea, #6b21a8);
     box-shadow: 0 2px 6px rgba(147,51,234,0.4);
@@ -386,7 +373,6 @@ select:focus, input:focus {
 .L { background:#ffd600; color:black; }
 .T { background:#00acc1; color:black; }
 
-/* Badge dynamic colors */
 .badge.A { 
     background: linear-gradient(135deg, #9333ea, #6b21a8);
     box-shadow: 0 0 10px rgba(147,51,234,0.5);
@@ -418,7 +404,6 @@ body.dark .badge.N { background:#9ca3af; color:black; }
     transform: scale(1.05);
 }
 
-/* Smooth hover effect */
 .chip {
     transition: all 0.2s ease;
 }
@@ -428,8 +413,7 @@ body.dark .badge.N { background:#9ca3af; color:black; }
     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* ==================== 08. FOOTER & LAST UPDATED ==================== */
-
+/* 10. FOOTER & LAST UPDATED */
 .footer {
     text-align:center;
     padding:15px;
@@ -493,8 +477,7 @@ body.dark .badge.N { background:#9ca3af; color:black; }
     100% { opacity:1; }
 }
 
-/* ===== FULL MONTH SHIFT CALENDAR ===== */
-
+/* 11. FULL MONTH SHIFT CALENDAR */
 .next7-container {
     display: block;
     padding: 8px 0;
@@ -581,7 +564,6 @@ body.dark .badge.N { background:#9ca3af; color:black; }
     color: #1d4ed8;
 }
 
-/* Dark mode */
 body.dark .calendar-month {
     color: #93c5fd;
 }
@@ -604,7 +586,6 @@ body.dark .calendar-today .calendar-date {
     color: #bfdbfe;
 }
 
-/* Compact calendar on small screens */
 @media (max-width: 380px) {
     .calendar-grid {
         gap: 2px;
@@ -631,8 +612,7 @@ body.dark .calendar-today .calendar-date {
     }
 }
 
-/* ==================== 10. TRAINING ==================== */
-
+/* 12. TRAINING */
 .training-item {
     background: linear-gradient(135deg, #ffffff, #f1f5f9);
     border-left: 5px solid #1f4e79;
@@ -664,25 +644,19 @@ body.dark .calendar-today .calendar-date {
     color:#555;
 }
 
-/* Training Status */
-
-/* Past */
 .past-training {
     opacity: 0.5;
 }
 
-/* Today */
 .today-training {
     border-left: 5px solid #22c55e !important;
     background: linear-gradient(135deg, #ecfdf5, #d1fae5);
 }
 
-/* Upcoming */
 .upcoming-training {
     border-left: 5px solid #f59e0b;
 }
 
-/* Dark Mode Status */
 body.dark .today-training {
     background: linear-gradient(135deg, #064e3b, #022c22);
     border-left: 5px solid #22c55e;
@@ -692,9 +666,7 @@ body.dark .upcoming-training {
     border-left: 5px solid #fbbf24;
 }
 
-/* ==================== 11. THEME TOGGLE ==================== */
-
-/* Theme toggle switch */
+/* 13. THEME TOGGLE */
 .theme-switch {
     position:absolute;
     top:12px;
@@ -746,8 +718,7 @@ body.dark .upcoming-training {
     transform: scale(1.05);
 }
 
-/* ==================== 12. DARK MODE OVERRIDES ==================== */
-
+/* 14. DARK MODE OVERRIDES */
 body.dark .training-item {
     background: linear-gradient(135deg, #1e293b, #111827);
     border-left: 5px solid #60a5fa;
@@ -845,7 +816,6 @@ body.dark #lastUpdated {
     color: #94a3b8;
 }
 
-/* Keep shift colors intact */
 body.dark .chip {
     opacity:0.95;
 }
@@ -854,8 +824,7 @@ body.dark .badge {
     box-shadow:0 0 6px rgba(255,255,255,0.1);
 }
 
-/* ==================== 13. PRODUCTION PLAN ==================== */
-
+/* 15. PRODUCTION PLAN */
 .production-card{
     margin-top:18px;
     padding:16px 14px 14px;
@@ -866,7 +835,6 @@ body.dark .badge {
     box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* Production heading */
 .production-card .section-title{
     font-size:16px;
     font-weight:700;
@@ -878,7 +846,6 @@ body.dark .badge {
     margin-bottom:10px;
 }
 
-/* Target capsules */
 .production-targets{
     display:flex;
     justify-content:center;
@@ -920,7 +887,6 @@ body.dark .badge {
     font-size: 10px;
 }
 
-/* Production schedule */
 .production-table{
     width:100%;
     border-collapse:separate;
@@ -933,7 +899,7 @@ body.dark .badge {
     text-align:left;
     font-size:11px;
     font-weight:700;
-    text-transform:uppercase;
+    text-transform:none;
     letter-spacing:.5px;
     opacity:.55;
 }
@@ -1029,7 +995,6 @@ body.dark .production-today td{
     border: 1px solid #c17a3c;
 }
 
-/* Upcoming Production Plan */
 .production-table tbody tr:not(.production-today):not(.production-past) td:first-child{
     border-left-color:#f59e0b;
 }
@@ -1072,7 +1037,6 @@ body.dark .production-table tbody tr:not(.production-today):not(.production-past
 
 }
 
-/* Fix date selector overflow on iPhones */
 input[type="date"] {
     display: block;
     width: 100%;
@@ -1089,8 +1053,17 @@ input[type="date"] {
     box-sizing: border-box;
 }
 
-/* ===== APP PAGE NAVIGATION ===== */
+.production-table {
+    width: 100%;
+    table-layout: fixed;
+}
 
+.production-table th,
+.production-table td {
+    width: 33.333%;
+}
+
+/* 16. APP PAGE NAVIGATION */
 .app-page {
   display: none;
 }
@@ -1099,12 +1072,9 @@ input[type="date"] {
   display: block;
 }
 
-/* Reserve space for the fixed bottom navigation */
 body {
   padding-bottom: 90px;
 }
-
-/* Bottom navigation layout is consolidated in the final section. */
 
 .nav-item {
   min-width: 0;
@@ -1145,7 +1115,6 @@ body {
   outline-offset: -2px;
 }
 
-/* More-page menu buttons */
 .more-menu {
   display: grid;
   gap: 12px;
@@ -1175,8 +1144,7 @@ body.dark .more-menu button {
   border-color: #414752;
 }
 
-/* ===== IMS TARGETS PAGE ===== */
-
+/* 17. IMS TARGETS */
 .ims-card > h3 {
   text-align: center;
   margin-bottom: 14px;
@@ -1240,8 +1208,7 @@ body.dark .ims-section {
   }
 }
 
-/* ===== IMS TARGETS: MODERN CARD DESIGN ===== */
-
+/* 18. IMS CARD DESIGN */
 .ims-card {
     background: transparent;
     box-shadow: none;
@@ -1314,7 +1281,6 @@ body.dark .ims-section {
     overflow-wrap: anywhere;
 }
 
-/* Dark mode */
 body.dark .ims-card > h3 {
     background: linear-gradient(135deg, #1e3a5f, #1d4ed8);
 }
@@ -1341,7 +1307,6 @@ body.dark .ims-value-number {
     color: #e2e8f0;
 }
 
-/* Compact mobile layout */
 @media (max-width: 360px) {
     .ims-section {
         padding: 11px 9px;
@@ -1368,8 +1333,7 @@ body.dark .ims-value-number {
     }
 }
 
-/* ===== MATCHING PRODUCTION & TRAINING HEADERS ===== */
-
+/* 19. SHARED SECTION HEADERS */
 #trainingHeader,
 #productionPlanHeader {
     margin: 8px 0 16px;
@@ -1384,13 +1348,11 @@ body.dark .ims-value-number {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
-/* Keep the production month text consistent with the header */
 #productionPlanMonth {
     color: #ffffff;
     font-weight: 700;
 }
 
-/* Dark mode */
 body.dark #trainingHeader,
 body.dark #productionPlanHeader {
     background: linear-gradient(135deg, #1e3a5f, #1d4ed8);
@@ -1402,7 +1364,6 @@ body.dark #productionPlanMonth {
     color: #ffffff;
 }
 
-/* Smaller phones */
 @media (max-width: 360px) {
     #trainingHeader,
     #productionPlanHeader {
@@ -1411,7 +1372,7 @@ body.dark #productionPlanMonth {
     }
 }
 
-/* ===== SETTINGS / DISPLAY OPTIONS ===== */
+/* 20. SETTINGS / DISPLAY OPTIONS */
 .settings-card > h3 {
     margin: 4px 0 16px;
     text-align: center;
@@ -1469,7 +1430,7 @@ body.dark .settings-details p span:first-child {
     color: #9ca3af;
 }
 
-/* ===== SETTINGS HEADER — MATCH IMS DESIGN ===== */
+/* 21. SETTINGS HEADER */
 #settingsHeader {
     margin: 8px 0 16px;
     padding: 14px 12px;
@@ -1496,7 +1457,6 @@ body.dark #settingsHeader {
     }
 }
 
-/* Match section headers to HOD/AIC colours in dark mode */
 body.dark #page-production .production-card > h3,
 body.dark #page-training .card > h3,
 body.dark #page-ims .ims-card > h3,
@@ -1510,7 +1470,6 @@ body.dark #page-others .settings-card > h3 {
     box-sizing: border-box;
 }
 
-/* Match IMS heading spacing with Training in dark mode */
 body.dark #page-ims .ims-card {
     padding: 17px 12px 14px;
 }
@@ -1520,7 +1479,6 @@ body.dark #page-ims .ims-card > h3 {
     border-radius: 10px;
 }
 
-/* Match IMS heading spacing in light mode */
 body:not(.dark) #page-ims .ims-card {
     padding: 17px 12px 14px;
 }
@@ -1530,7 +1488,6 @@ body:not(.dark) #page-ims .ims-card > h3 {
     border-radius: 10px;
 }
 
-/* IMS outer card background in light mode */
 body:not(.dark) #page-ims .ims-card {
     background: #ffffff;
     border-radius: 14px;
@@ -1539,16 +1496,12 @@ body:not(.dark) #page-ims .ims-card {
     overflow: hidden;
 }
 
-/* Keep the IMS heading rounded on all four corners */
 body:not(.dark) #page-ims .ims-card > h3 {
     border-radius: 10px;
     margin: 0 0 14px;
 }
 
-/* Match Shift section headings with other dashboard sections */
-
-/* ===== SHIFT HEADINGS — MATCH OTHER DASHBOARD SECTIONS ===== */
-
+/* 22. SHIFT HEADINGS */
 #page-shifts #shiftCalendarHeading,
 #page-shifts #selectedTitle {
     background: linear-gradient(135deg, #1f4e79, #2563a6);
@@ -1565,8 +1518,6 @@ body:not(.dark) #page-ims .ims-card > h3 {
     box-sizing: border-box;
 }
 
-/* Dark mode */
-
 body.dark #page-shifts #shiftCalendarHeading,
 body.dark #page-shifts #selectedTitle {
     background: linear-gradient(135deg, #0f172a, #020617);
@@ -1574,7 +1525,6 @@ body.dark #page-shifts #selectedTitle {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: none;
 }
-
 
 @media (max-width: 360px) {
     #page-shifts #shiftCalendarHeading,
@@ -1584,9 +1534,6 @@ body.dark #page-shifts #selectedTitle {
     }
 }
 
-
-
-/* Left-align Production, Training, IMS and Settings headings */
 #page-production .production-card > h3,
 #page-training .card > h3,
 #page-ims .ims-card > h3,
@@ -1594,16 +1541,12 @@ body.dark #page-shifts #selectedTitle {
     text-align: left;
 }
 
-
-/* Modern, clean shift calendar */
 .calendar-day {
     border: 1px solid transparent;
     background: transparent;
     border-radius: 8px;
     box-shadow: none;
 }
-
-/* Highlight only today's date */
 
 .calendar-day.calendar-today {
     border: 1.5px solid rgba(37, 99, 235, 0.55);
@@ -1615,13 +1558,10 @@ body.dark #page-shifts #selectedTitle {
         0 3px 10px rgba(37, 99, 235, 0.08);
 }
 
-
-/* Dark mode */
 body.dark .calendar-day {
     border-color: transparent;
     background: transparent;
 }
-
 
 body.dark .calendar-day.calendar-today {
     border: 1.5px solid rgba(147, 197, 253, 0.48);
@@ -1633,8 +1573,7 @@ body.dark .calendar-day.calendar-today {
         0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== TODAY'S SHIFT: GLASS HIGHLIGHT ===== */
-
+/* 23. CURRENT SHIFT HIGHLIGHT */
 #next7Days .active-shift,
 #next7Days .shift-active-box {
     background: rgba(120, 170, 220, 0.12);
@@ -1647,14 +1586,12 @@ body.dark .calendar-day.calendar-today {
     transition: background 0.25s ease, border-color 0.25s ease;
 }
 
-/* Light mode glass */
 body:not(.dark) #next7Days .active-shift,
 body:not(.dark) #next7Days .shift-active-box {
     background: rgba(59, 130, 246, 0.09);
     border-color: rgba(59, 130, 246, 0.28);
 }
 
-/* Dark mode glass */
 body.dark #next7Days .active-shift,
 body.dark #next7Days .shift-active-box {
     background: rgba(148, 190, 255, 0.10);
@@ -1664,14 +1601,7 @@ body.dark #next7Days .shift-active-box {
         0 4px 16px rgba(0, 0, 0, 0.16);
 }
 
-
-/* =============================================================================
-   18. BOTTOM NAVIGATION — CONSOLIDATED
-   Mobile: swipe/scroll horizontally through fixed-width tabs.
-   Desktop: show all six tabs evenly across a centred navigation track.
-   Keep all bottom-navigation rules in this section only.
-   ============================================================================= */
-
+/* 24. BOTTOM NAVIGATION */
 .bottom-nav {
     position: fixed;
     left: 0;
@@ -1690,7 +1620,6 @@ body.dark #next7Days .shift-active-box {
     overflow: hidden;
 }
 
-/* Scrollable row of navigation tabs */
 .bottom-nav .nav-scroll {
     display: flex;
     flex: 1 1 auto;
@@ -1713,7 +1642,6 @@ body.dark #next7Days .shift-active-box {
     display: none;
 }
 
-/* Fixed tab width makes horizontal scrolling possible on phones */
 .bottom-nav .nav-scroll .nav-item {
     flex: 0 0 76px;
     width: 76px;
@@ -1763,7 +1691,6 @@ body.dark #next7Days .shift-active-box {
     outline-offset: -2px;
 }
 
-/* Navigation arrows: JavaScript adds .is-visible when scrolling is available */
 .bottom-nav .nav-arrow {
     display: flex;
     flex: 0 0 24px;
@@ -1793,7 +1720,6 @@ body.dark #next7Days .shift-active-box {
     pointer-events: auto;
 }
 
-/* Dark theme navigation colours */
 body.dark {
     --nav-bg: #171a20;
     --nav-border: #343943;
@@ -1802,7 +1728,6 @@ body.dark {
     --nav-active-bg: #26364e;
 }
 
-/* Compact labels and icons on narrow phones */
 @media (max-width: 380px) {
     .bottom-nav {
         padding-left: 2px;
@@ -1833,7 +1758,6 @@ body.dark {
     }
 }
 
-/* Desktop: centre and distribute all six tabs; scrolling remains available if needed */
 @media (min-width: 768px) {
     .bottom-nav {
         justify-content: center;
@@ -1862,17 +1786,11 @@ body.dark {
     }
 }
 
-
-
-/* =====================================================
-   PLANT PAGE — CONSOLIDATED MODERN LAYOUT
-   ===================================================== */
-
+/* 25. PLANT PAGE LAYOUT */
 #page-plant {
   padding-bottom: 20px;
 }
 
-/* Page heading: retain the existing Training/IMS-style header */
 #page-plant #plantHeader {
   background: linear-gradient(135deg, #1f4e79, #2563a6);
   color: #fff;
@@ -1893,7 +1811,6 @@ body.dark #page-plant #plantHeader {
   box-shadow: none;
 }
 
-/* Reactor and Extruder: one large card per row */
 #page-plant #plantMajorCards {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1932,7 +1849,6 @@ body.dark #page-plant #plantHeader {
   border-left-color: #94a3b8;
 }
 
-/* Equipment names */
 #page-plant .plant-card-title {
   font-size: 16px;
   line-height: 1.4;
@@ -1940,7 +1856,6 @@ body.dark #page-plant #plantHeader {
   color: #1e293b;
 }
 
-/* Status text */
 #page-plant .plant-status-text {
   font-size: 13px;
   line-height: 1.4;
@@ -1961,7 +1876,6 @@ body.dark #page-plant #plantHeader {
   color: #64748b;
 }
 
-/* Event dates and duration */
 #page-plant .plant-event-date {
   font-size: 12px;
   line-height: 1.5;
@@ -1978,7 +1892,6 @@ body.dark #page-plant #plantHeader {
   overflow-wrap: anywhere;
 }
 
-/* FPU: two columns, six cards, three rows */
 #page-plant #plantFpuCards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1988,7 +1901,6 @@ body.dark #page-plant #plantHeader {
   align-items: stretch;
 }
 
-/* Compact, neutral FPU cards */
 #page-plant .plant-fpu-card {
   display: flex;
   flex-direction: column;
@@ -2008,7 +1920,6 @@ body.dark #page-plant #plantHeader {
   overflow-wrap: anywhere;
 }
 
-/* Keep all FPU cards neutral */
 #page-plant .plant-fpu-card.plant-fpu-inline,
 #page-plant .plant-fpu-card.plant-fpu-standby,
 #page-plant .plant-fpu-card.plant-fpu-custom,
@@ -2047,7 +1958,6 @@ body.dark #page-plant #plantHeader {
   font-weight: 500;
 }
 
-/* Data refresh message */
 #page-plant #plantDataNote {
   margin: 8px 2px;
   font-size: 11px;
@@ -2055,7 +1965,6 @@ body.dark #page-plant #plantHeader {
   color: #64748b;
 }
 
-/* Dark mode */
 body.dark #page-plant .plant-major-card,
 body.dark #page-plant .plant-fpu-card {
   background: #171a20;
@@ -2086,7 +1995,6 @@ body.dark #page-plant .plant-major-card.plant-shutdown {
   border-left-color: #dc2626;
 }
 
-/* Small mobile screens: retain two FPU columns */
 @media (max-width: 360px) {
   #page-plant #plantFpuCards {
     gap: 7px;
@@ -2111,31 +2019,23 @@ body.dark #page-plant .plant-major-card.plant-shutdown {
   }
 }
 
-
-/* =====================================================
-   PLANT — COMPACT CARDS & INLINE BORDER HIGHLIGHT
-   ===================================================== */
-
-/* Reduce spacing between major equipment cards */
+/* 26. PLANT PAGE COMPACT LAYOUT */
 #page-plant #plantMajorCards {
   gap: 9px;
   margin: 10px 0 13px;
 }
 
-/* More compact Reactor and Extruder */
 #page-plant .plant-major-card {
   padding: 12px 14px;
   gap: 3px;
   border-radius: 12px;
 }
 
-/* Reduce spacing between FPU cards */
 #page-plant #plantFpuCards {
   gap: 8px;
   margin: 8px 0 12px;
 }
 
-/* Compact FPU cards */
 #page-plant .plant-fpu-card {
   padding: 10px 11px;
   gap: 3px;
@@ -2143,7 +2043,6 @@ body.dark #page-plant .plant-major-card.plant-shutdown {
   border-radius: 11px;
 }
 
-/* Equipment names */
 #page-plant .plant-major-card .plant-card-title {
   font-size: 15px;
   line-height: 1.3;
@@ -2154,13 +2053,11 @@ body.dark #page-plant .plant-major-card.plant-shutdown {
   line-height: 1.3;
 }
 
-/* Compact status text */
 #page-plant .plant-status-text {
   font-size: 12px;
   line-height: 1.3;
 }
 
-/* Compact dates and duration */
 #page-plant .plant-event-date,
 #page-plant .plant-duration {
   margin: 0;
@@ -2177,12 +2074,10 @@ body.dark #page-plant .plant-major-card.plant-shutdown {
   font-size: 10.5px;
 }
 
-/* Date labels slightly stronger */
 #page-plant .plant-date-label {
   font-weight: 650;
 }
 
-/* Neutral border for all FPU cards */
 #page-plant .plant-fpu-card,
 #page-plant .plant-fpu-card.plant-fpu-standby,
 #page-plant .plant-fpu-card.plant-fpu-custom,
@@ -2190,17 +2085,14 @@ body.dark #page-plant .plant-major-card.plant-shutdown {
   border-left: 4px solid #cbd5e1;
 }
 
-/* Green border ONLY for Inline FPU cards */
 #page-plant .plant-fpu-card.plant-fpu-inline {
   border-left: 4px solid #16a34a;
 }
 
-/* Dark mode — retain green Inline border */
 body.dark #page-plant .plant-fpu-card.plant-fpu-inline {
   border-left-color: #22c55e;
 }
 
-/* Small mobile screens */
 @media (max-width: 360px) {
   #page-plant .plant-major-card {
     padding: 11px 12px;
@@ -2218,7 +2110,6 @@ body.dark #page-plant .plant-fpu-card.plant-fpu-inline {
   }
 }
 
-
 #page-plant .plant-custom-message {
   font-size: 12px;
   line-height: 1.35;
@@ -2231,14 +2122,12 @@ body.dark #page-plant .plant-custom-message {
   color: #60a5fa;
 }
 
-
 .plant-date-label {
   display: block;
 }
 
-/* ===== CURRENT PRODUCTION GRADE CARD ===== */
-
-#page-production .production-grade-card {
+#page-production /* 27. CURRENT PRODUCTION GRADE CARD */
+.production-grade-card {
     margin: 12px 10px 18px;
     padding: 15px 14px;
     background: linear-gradient(135deg, #ffffff, #f1f5f9);
