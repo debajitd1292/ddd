@@ -24,6 +24,9 @@ const productionPlanUrl =
 const productionTargetUrl =
     baseUrl + "production/production_target.csv?v=" + DATA_VERSION;
 
+const productionGradeUrl =
+    baseUrl + "updates/production_grade.csv?v=" + DATA_VERSION;
+
 const seniorityExecUrl =
     baseUrl + "seniority/seniority_exec.csv?v=" + DATA_VERSION;
 

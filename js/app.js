@@ -305,6 +305,11 @@ function autoRefreshData(){
 
     updateShiftUrls();
 
+    // Load Production Grade independently
+    fetchCSV(productionGradeUrl, true)
+        .then(loadProductionGradeData)
+        .catch(err => console.warn("Production Grade load failed:", err));
+
     Promise.all([
         fetchCSV(shiftUrl),
         fetchCSV(shiftUrlNext, true),
