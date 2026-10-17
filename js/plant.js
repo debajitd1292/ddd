@@ -363,12 +363,25 @@ function fpuCard(row, name, pairStatus = null) {
       return;
     }
 
-    majorContainer.innerHTML = [
-      majorCard(getRow(rows, "major", "Reactor"), "Reactor"),
-      majorCard(getRow(rows, "major", "Extruder"), "Extruder")
-    ].join("");
+      majorContainer.innerHTML = [
+        majorCard(getRow(rows, "major", "Reactor"), "Reactor"),
+        majorCard(getRow(rows, "major", "Extruder"), "Extruder")
+      ].join("");
 
-    
+    // Hide Current Production Grade when Reactor is Shutdown.
+    const reactorStatus = majorContainer
+      .querySelector(".plant-major-card .plant-status-text");
+
+    const productionGradeCard =
+      document.querySelector(".production-grade-card");
+
+    if (productionGradeCard && reactorStatus) {
+      productionGradeCard.style.display =
+        reactorStatus.textContent.trim() === "Shutdown"
+          ? "none"
+          : "";
+    }
+
     const fpuPairs = [
       ["Dryer-A", "Dryer-B"],
       ["Treater-A", "Treater-B"],
